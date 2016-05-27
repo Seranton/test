@@ -38,14 +38,16 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            //'baseURL'=>'/justcoded/www',
             'rules' => [
+                'productdetails/<id:\d+>' => 'site/json',
             ],
         ],
-        */
+        
     ],
     'params' => $params,
 ];

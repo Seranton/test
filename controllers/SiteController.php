@@ -51,44 +51,19 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
-
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+    public function actionJson($id){
+        $image=[];
+        $parent=[];
+        \Yii::$app->response->format = 'json';
+        $item=\app\models\Item::findOne($id);
+        if ($item) {
+            $image=$item->itemImages;
+            $parent=['name'=>$item->Categories_name];
         }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        else {
+            $item=[];
         }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        return (['maindata'=>$item,'images'=>$image,'category'=>$parent]);
     }
-
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+    
 }

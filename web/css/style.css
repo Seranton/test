@@ -1,0 +1,5 @@
+.select-resized {width: 219px; display: inline-block; margin-left: 10px; margin-bottom: 10px;}
+.select-resized:first-child {margin-left: 0px;}
+.select-resized:nth-child(5n+1) {margin-left: 0px;}
+.imageitem {width: 80px; max-height: 80px; margin-right: 20px; cursor: pointer;}
+.checkimage{display: none;}
